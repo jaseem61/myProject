@@ -1,5 +1,5 @@
 pipeline {
-  agent { label 'linux' }
+  agent { label 'master' }
   tools {
     maven 'apache-maven-3.8.1'
   }
@@ -11,18 +11,18 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'mvn clean compile'
+        bat 'mvn clean compile'
       }
     }
     stage('Test') {
       steps {
-        sh 'mvn test'
+        bat 'mvn test'
         junit '**/target/surefire-reports/TEST-*.xml'
       }
     }
     stage('Package') {
       steps {
-        sh 'mvn package'
+        bat 'mvn package'
       }
     }
   }
